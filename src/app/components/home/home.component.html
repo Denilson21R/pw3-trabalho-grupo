@@ -1,1 +1,4 @@
-<p>Bora dale!</p>
+<app-tabs tab="home"></app-tabs>
+<ng-template [ngIf]="receitas">
+  {{receitas | json}}
+</ng-template>
