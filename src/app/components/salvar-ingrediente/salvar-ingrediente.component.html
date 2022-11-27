@@ -1,0 +1,45 @@
+<app-tabs [tab]="'ingredientes'"></app-tabs>
+<form class="m-6" [formGroup]="formIngrediente" (submit)="salvarIngrediente()">
+  <h1 class="title">Atualizar Ingrediente</h1>
+  <div class="field">
+    <label class="label">Nome</label>
+    <div class="control">
+      <input
+        [ngClass]="{
+          'input': true,
+          'is-success': nome.valid && nome.value != null,
+          'is-danger': !nome.valid && nome.value != null
+          }"
+        type="text" formControlName="nome">
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Quantidade</label>
+    <div class="control">
+      <input
+        [ngClass]="{
+          'input': true,
+          'is-success': quantidade.valid && quantidade.value != null,
+          'is-danger': !quantidade.valid && quantidade.value != null
+          }"
+        type="number" formControlName="quantidade">
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Unidade</label>
+    <div class="control">
+      <input
+        [ngClass]="{
+          'input': true,
+          'is-success': unidade.valid && unidade.value != null,
+          'is-danger': !unidade.valid && unidade.value != null
+          }"
+        type="text" formControlName="unidade">
+    </div>
+  </div>
+  <div class="field is-grouped">
+    <div class="control">
+      <button type="submit" class="button is-link">Salvar</button>
+    </div>
+  </div>
+</form>

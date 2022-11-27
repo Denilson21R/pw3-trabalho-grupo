@@ -4,7 +4,7 @@
     <h1 class="title">Ingredientes</h1>
   </div>
   <div class="column">
-    <button class="button is-info btn-add">Novo Ingrediente</button>
+    <button class="button is-info btn-add" routerLink="novo">Novo Ingrediente</button>
   </div>
 </div>
 <div class="main mt-4 ml-6 mr-6">
@@ -24,7 +24,7 @@
           <td>{{ingrediente.quantidade}}</td>
           <td>{{ingrediente.unidade}}</td>
           <td class="acoes has-text-centered">
-            <button class="button is-link mr-2">Atualizar</button>
+            <button class="button is-link mr-2" routerLink="atualizar/{{ingrediente._id}}">Atualizar</button>
             <button class="button is-danger" (click)="deletaIngrediente(ingrediente)" >Deletar</button>
           </td>
         </tr>

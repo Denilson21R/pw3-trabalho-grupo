@@ -8,6 +8,8 @@ import { TabsComponent } from './components/tabs/tabs.component';
 import { IngredientesComponent } from './components/ingredientes/ingredientes.component';
 import {HttpClientModule} from "@angular/common/http";
 import { TempoPreparoPipe } from './pipes/tempo-preparo.pipe';
+import { SalvarIngredienteComponent } from './components/salvar-ingrediente/salvar-ingrediente.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -15,13 +17,15 @@ import { TempoPreparoPipe } from './pipes/tempo-preparo.pipe';
     HomeComponent,
     TabsComponent,
     IngredientesComponent,
-    TempoPreparoPipe
+    TempoPreparoPipe,
+    SalvarIngredienteComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ReactiveFormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
