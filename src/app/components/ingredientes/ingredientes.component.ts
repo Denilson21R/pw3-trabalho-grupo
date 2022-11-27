@@ -13,13 +13,27 @@ export class IngredientesComponent implements OnInit {
   constructor(private web: WebService) { }
 
   ngOnInit(): void {
-    this.web.getAllIngredientes().subscribe((response)=>{
-      if(response.ok){
+    this.fillIngredientes();
+  }
+
+  private fillIngredientes() {
+    this.web.getAllIngredientes().subscribe((response) => {
+      if (response.ok) {
         this.ingredientes = response.body!
-      }else{
-        //TODO: show alert with error
+      } else {
+        alert("Ocorreu um erro ao obter os ingredientes");
       }
     })
   }
 
+  deletaIngrediente(ingrediente: Ingrediente) {
+    this.web.deletaIngrediente(ingrediente).subscribe((response)=>{
+      if(response.ok){
+        alert("Ingrediente deletado com sucesso");
+        this.fillIngredientes()
+      }else{
+        alert("Ocorreu um erro ao deletar o ingrediente");
+      }
+    })
+  }
 }

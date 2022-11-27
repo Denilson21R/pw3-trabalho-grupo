@@ -7,13 +7,15 @@ import { HomeComponent } from './components/home/home.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { IngredientesComponent } from './components/ingredientes/ingredientes.component';
 import {HttpClientModule} from "@angular/common/http";
+import { TempoPreparoPipe } from './pipes/tempo-preparo.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     TabsComponent,
-    IngredientesComponent
+    IngredientesComponent,
+    TempoPreparoPipe
   ],
   imports: [
     BrowserModule,

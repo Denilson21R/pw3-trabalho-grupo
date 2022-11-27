@@ -13,13 +13,27 @@ export class HomeComponent implements OnInit {
   constructor(private web: WebService) { }
 
   ngOnInit(): void {
-    this.web.getAllReceitas().subscribe((response)=>{
-      if(response.ok){
+    this.fillReceitas();
+  }
+
+  private fillReceitas() {
+    this.web.getAllReceitas().subscribe((response) => {
+      if (response.ok) {
         this.receitas = response.body!
-      }else{
-        //TODO: show alert with error
+      } else {
+        alert("Ocorreu um erro ao obter as receitas");
       }
     })
   }
 
+  deletaReceita(receita: Receita) {
+    this.web.deleteReceita(receita).subscribe((response)=>{
+      if(response.ok){
+        alert("Receita deletada com sucesso");
+        this.fillReceitas()
+      }else{
+        alert("Ocorreu um erro ao deletar a receita");
+      }
+    })
+  }
 }

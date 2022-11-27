@@ -19,4 +19,12 @@ export class WebService {
   getAllIngredientes(){
     return this.http.get<Ingrediente[]>(this.baseURL+"/ingrediente", {observe: "response"})
   }
+
+  deleteReceita(receita: Receita) {
+    return this.http.delete(this.baseURL+"/receita/"+receita._id, {observe: "response"})
+  }
+
+  deletaIngrediente(ingrediente: Ingrediente) {
+    return this.http.delete(this.baseURL+"/ingrediente/"+ingrediente._id, {observe: "response"})
+  }
 }
