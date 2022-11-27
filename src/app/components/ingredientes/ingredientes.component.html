@@ -1,4 +1,34 @@
 <app-tabs tab="ingredientes"></app-tabs>
-<ng-template [ngIf]="ingredientes">
-  {{ingredientes | json}}
-</ng-template>
+<div class="columns mt-4 ml-6 mr-6">
+  <div class="column">
+    <h1 class="title">Ingredientes</h1>
+  </div>
+  <div class="column">
+    <button class="button is-info btn-add">Novo Ingrediente</button>
+  </div>
+</div>
+<div class="main mt-4 ml-6 mr-6">
+  <ng-template [ngIf]="ingredientes">
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+      <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Quantidade</th>
+        <th>Unidade</th>
+        <th>Ações</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ingrediente of ingredientes">
+          <td>{{ingrediente.nome}}</td>
+          <td>{{ingrediente.quantidade}}</td>
+          <td>{{ingrediente.unidade}}</td>
+          <td class="acoes has-text-centered">
+            <button class="button is-link mr-2">Atualizar</button>
+            <button class="button is-danger" (click)="deletaIngrediente(ingrediente)" >Deletar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
+</div>
