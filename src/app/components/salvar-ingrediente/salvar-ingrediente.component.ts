@@ -55,23 +55,41 @@ export class SalvarIngredienteComponent implements OnInit {
   salvarIngrediente() {
     if(this.formIngrediente.valid){
       if(this.ingrediente._id != null){
-        this.web.updateIngrediente(
-          this.ingrediente._id,
-          this.formIngrediente.controls["nome"].value,
-          this.formIngrediente.controls["quantidade"].value,
-          this.formIngrediente.controls["unidade"].value
-        ).subscribe((response)=>{
-          if(response.ok){
-            alert("Ingrediente atualizado com sucesso")
-            this.router.navigate(["/ingredientes"])
-          }else{
-            alert("Ocorreu um erro ao atualizar o ingrediente")
-          }
-        })
+        this.updateIngrediente();
       }else{
-        alert("add")
+        this.addIngrediente();
       }
     }
   }
 
+  private addIngrediente() {
+    this.web.addIngrediente(
+      this.formIngrediente.controls["nome"].value,
+      this.formIngrediente.controls["quantidade"].value,
+      this.formIngrediente.controls["unidade"].value
+    ).subscribe((response) => {
+      if (response.ok) {
+        alert("Ingrediente salvo com sucesso")
+        this.router.navigate(["/ingredientes"])
+      } else {
+        alert("Ocorreu um erro ao salvar o ingrediente")
+      }
+    })
+  }
+
+  private updateIngrediente() {
+    this.web.updateIngrediente(
+      this.ingrediente._id,
+      this.formIngrediente.controls["nome"].value,
+      this.formIngrediente.controls["quantidade"].value,
+      this.formIngrediente.controls["unidade"].value
+    ).subscribe((response) => {
+      if (response.ok) {
+        alert("Ingrediente atualizado com sucesso")
+        this.router.navigate(["/ingredientes"])
+      } else {
+        alert("Ocorreu um erro ao atualizar o ingrediente")
+      }
+    })
+  }
 }

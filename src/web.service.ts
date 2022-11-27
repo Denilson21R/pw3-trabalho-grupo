@@ -39,4 +39,12 @@ export class WebService {
     ingredienteData = ingredienteData.set("unidade", unidade)
     return this.http.put(this.baseURL+"/ingrediente/"+id, ingredienteData, {observe:"response"})
   }
+
+  addIngrediente(nome: string, quantidade: number, unidade: string) {
+    let ingredienteData = new HttpParams()
+    ingredienteData = ingredienteData.set("nome", nome)
+    ingredienteData = ingredienteData.set("quantidade", quantidade)
+    ingredienteData = ingredienteData.set("unidade", unidade)
+    return this.http.post(this.baseURL+"/ingrediente", ingredienteData, {observe: "response"})
+  }
 }
