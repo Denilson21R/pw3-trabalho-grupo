@@ -22,10 +22,10 @@ export class SalvarIngredienteComponent implements OnInit {
   ngOnInit(): void {
     const id_ingrediente = this.route.snapshot.paramMap.get('id')
     if(id_ingrediente != null){
-      this.initForm()
+      this.initForm();
       this.getIngredienteById(id_ingrediente);
     }else{
-      this.initForm()
+      this.initForm();
     }
   }
 
@@ -34,9 +34,9 @@ export class SalvarIngredienteComponent implements OnInit {
       if (response.ok) {
         this.ingrediente = response.body!
       } else {
-        alert("Ocorreu um erro ao obter o ingrediente")
+        alert("Ocorreu um erro ao obter o ingrediente");
       }
-      this.initForm()
+      this.initForm();
     })
   }
 
@@ -45,7 +45,7 @@ export class SalvarIngredienteComponent implements OnInit {
       nome: new FormControl(this.ingrediente.nome, [Validators.required, Validators.minLength(2)]),
       quantidade: new FormControl(this.ingrediente.quantidade, [Validators.required, Validators.min(1)]),
       unidade: new FormControl(this.ingrediente.unidade, [Validators.required])
-    })
+    });
   }
 
   get nome() { return this.formIngrediente.get('nome')!; }

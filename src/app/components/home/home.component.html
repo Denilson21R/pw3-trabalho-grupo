@@ -3,9 +3,6 @@
   <div class="column">
     <h1 class="title">Receitas</h1>
   </div>
-  <div class="column">
-    <button class="button is-info btn-add">Nova Receita</button>
-  </div>
 </div>
 <div class="main mt-4 ml-6 mr-6">
   <ng-template [ngIf]="receitas">
@@ -34,4 +31,7 @@
       </tbody>
     </table>
   </ng-template>
+  <div class="column">
+    <button class="button is-info recipeBtn" routerLink="/nova-receita">Nova Receita</button>
+  </div>
 </div>

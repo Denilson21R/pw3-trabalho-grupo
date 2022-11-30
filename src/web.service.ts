@@ -33,18 +33,36 @@ export class WebService {
   }
 
   updateIngrediente(id: string, nome: string, quantidade: number, unidade: string) {
-    let ingredienteData = new HttpParams()
-    ingredienteData = ingredienteData.set("nome", nome)
-    ingredienteData = ingredienteData.set("quantidade", quantidade)
-    ingredienteData = ingredienteData.set("unidade", unidade)
-    return this.http.put(this.baseURL+"/ingrediente/"+id, ingredienteData, {observe:"response"})
+    let ingredienteData = new HttpParams();
+
+    ingredienteData = ingredienteData.set("nome", nome);
+    ingredienteData = ingredienteData.set("quantidade", quantidade);
+    ingredienteData = ingredienteData.set("unidade", unidade);
+
+    return this.http.put(this.baseURL+"/ingrediente/"+id, ingredienteData, {observe:"response"});
   }
 
   addIngrediente(nome: string, quantidade: number, unidade: string) {
-    let ingredienteData = new HttpParams()
-    ingredienteData = ingredienteData.set("nome", nome)
-    ingredienteData = ingredienteData.set("quantidade", quantidade)
-    ingredienteData = ingredienteData.set("unidade", unidade)
-    return this.http.post(this.baseURL+"/ingrediente", ingredienteData, {observe: "response"})
+    let ingredienteData = new HttpParams();
+    
+    ingredienteData = ingredienteData.set("nome", nome);
+    ingredienteData = ingredienteData.set("quantidade", quantidade);
+    ingredienteData = ingredienteData.set("unidade", unidade);
+    
+    return this.http.post(this.baseURL+"/ingrediente", ingredienteData, {observe: "response"});
+  }
+
+  //TODO: receber e adicionar array de 'Ingrediente'
+  addReceita(nome : string, minutos_preparo : number, modo_preparo : string, estacao_ano : string, ingredientes : Ingrediente[]) {
+    let receitaData = new HttpParams();
+    
+    receitaData = receitaData.set("nome", nome);
+    receitaData = receitaData.set("minutos_preparo", minutos_preparo);
+    receitaData = receitaData.set("modo_preparo", modo_preparo);
+    receitaData = receitaData.set("Ingredientes", JSON.stringify(ingredientes))
+    receitaData = receitaData.set("estacao_ano", estacao_ano);
+
+
+    return this.http.post(this.baseURL+"/receita", receitaData, {observe: "response"});
   }
 }
