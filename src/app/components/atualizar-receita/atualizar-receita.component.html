@@ -1,0 +1,73 @@
+<!--| Nav Bar |-->
+<app-tabs tab="home"></app-tabs>
+<!--| Cadastra Forms |-->
+<div class="main mt-4 ml-6 mr-6">
+  <form class="m-6" [formGroup]="formReceita" (submit)="salvarReceita()">
+
+    <!--| Topic Text |-->
+    <h2 class="title">Atualizar Receita</h2>
+
+    <!--| Name |-->
+    <div class="field">
+      <label class="label">Nome</label>
+      <div class="control">
+        <input
+          [ngClass]="{
+                'input': true,
+                'is-success': nome.valid && nome.value != null,
+                'is-danger': !nome.valid && nome.value != null
+                }"
+          type="text" [formControlName]="'nome'" readonly>
+      </div>
+    </div>
+
+    <!--| ETA (minutes) |-->
+    <div class="field">
+      <label class="label">Tempo Médio (minutos)</label>
+      <div class="control">
+        <input
+          [ngClass]="{
+                'input': true,
+                'is-success': minutos_preparo.valid && minutos_preparo.value != null,
+                'is-danger': !minutos_preparo.valid && minutos_preparo.value != null
+                }"
+          type="number" formControlName="minutos_preparo">
+      </div>
+    </div>
+
+    <!--| How To |-->
+    <div class="field">
+      <label class="label">Modo de Preparo</label>
+      <div class="control">
+            <textarea
+              [ngClass]="{
+                'input': true,
+                'is-success': modo_preparo.valid && modo_preparo.value != null,
+                'is-danger': !modo_preparo.valid && modo_preparo.value != null
+                }"
+              type="text" formControlName="modo_preparo"></textarea>
+      </div>
+    </div>
+
+    <!--| Season of the Year |-->
+    <div class="field">
+      <label class="label">Estação do Ano</label>
+      <div class="control">
+        <input
+          [ngClass]="{
+                    'input': true,
+                    'is-success': estacao_ano.valid && estacao_ano.value != null,
+                    'is-danger': !estacao_ano.valid && estacao_ano.value != null
+                    }"
+          type="text" formControlName="estacao_ano">
+      </div>
+    </div>
+
+    <!--| Submit Btn |-->
+    <div class="field is-grouped">
+      <div class="control">
+        <button type="submit" class="button is-link">Salvar</button>
+      </div>
+    </div>
+  </form>
+</div>

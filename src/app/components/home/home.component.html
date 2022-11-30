@@ -4,7 +4,7 @@
     <h1 class="title">Receitas</h1>
   </div>
   <div class="column">
-    <button class="button is-info btn-add">Nova Receita</button>
+    <button class="button is-info btn-add" routerLink="/nova-receita">Nova Receita</button>
   </div>
 </div>
 <div class="main mt-4 ml-6 mr-6">
@@ -27,11 +27,12 @@
         <td>{{receita.estacao_ano??"Não encontrado"}}</td>
         <td class="has-text-centered">
           <!--TODO: maybe show a detail button to show recipes?-->
-          <button class="button is-link mr-2">Atualizar</button>
+          <button class="button is-link mr-2" routerLink="atualizar/{{receita._id}}">Atualizar</button>
           <button class="button is-danger" (click)="deletaReceita(receita)">Deletar</button>
         </td>
       </tr>
       </tbody>
     </table>
   </ng-template>
+
 </div>
