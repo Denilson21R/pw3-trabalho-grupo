@@ -11,6 +11,7 @@ import { TempoPreparoPipe } from './pipes/tempo-preparo.pipe';
 import { SalvarIngredienteComponent } from './components/salvar-ingrediente/salvar-ingrediente.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { CadastraReceitaComponent } from './components/cadastra-receita/cadastra-receita.component';
+import { AtualizarReceitaComponent } from './components/atualizar-receita/atualizar-receita.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CadastraReceitaComponent } from './components/cadastra-receita/cadastra
     IngredientesComponent,
     TempoPreparoPipe,
     SalvarIngredienteComponent,
-    CadastraReceitaComponent
+    CadastraReceitaComponent,
+    AtualizarReceitaComponent
   ],
     imports: [
         BrowserModule,

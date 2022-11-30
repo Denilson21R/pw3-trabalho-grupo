@@ -1,17 +1,9 @@
 <!--| Nav Bar |-->
 <app-tabs tab="home"></app-tabs>
-
-<!--| Section Text |-->
-<div class="columns mt-4 ml-6 mr-6">
-  <div class="column">
-    <h1 class="title">Receitas</h1>
-  </div>
-</div>
-
 <!--| Cadastra Forms |-->
 <div class="main mt-4 ml-6 mr-6">
     <form class="m-6" [formGroup]="formReceita" (submit)="salvarReceita()">
-        
+
         <!--| Topic Text |-->
         <h2 class="title">Cadastrar Receita</h2>
 
@@ -25,7 +17,7 @@
                 'is-success': nome.valid && nome.value != null,
                 'is-danger': !nome.valid && nome.value != null
                 }"
-              type="text" formControlName="nome">
+              type="text" [formControlName]="'nome'">
           </div>
         </div>
 
@@ -57,51 +49,50 @@
           </div>
         </div>
 
+        <!--| Season of the Year |-->
+        <div class="field">
+          <label class="label">Estação do Ano</label>
+          <div class="control">
+            <input
+              [ngClass]="{
+                    'input': true,
+                    'is-success': estacao_ano.valid && estacao_ano.value != null,
+                    'is-danger': !estacao_ano.valid && estacao_ano.value != null
+                    }"
+              type="text" formControlName="estacao_ano">
+          </div>
+        </div>
+
         <!--| Ingredients |-->
         <div class="field">
             <label class="label">Ingredientes</label>
-            <div class="control">
-                <label>Qtde: </label>
-                <input [(ngModel)]="this.qtdIngrediente" [ngClass]="{
-                  'input': true,
-                  'is-success': estacao_ano.valid && estacao_ano.value != null,
-                  'is-danger': !estacao_ano.valid && estacao_ano.value != null
-                  } + ' qtdIngrediente'" type="number" formControlName="estacao_ano">
-                
-                <label>Opções: </label>
-                <select (change)="mudaIngrediente($event)">
-                    <option *ngFor="let ingrd of this.ingredientesPrepared" [value]="ingrd">{{ingrd}}</option>
-                </select> <button (click)="adicionaIngredienteReceita()">✓</button>
-                  
-                <div class="showIngredientContainer" *ngIf="this.ingredientesSelecionados">
-                    <div class="ingredientsContainer" *ngFor="let ingrediente of this.ingredientesSelecionados">
-
-                        <div class="ingredientContainer">
-                            <span class="ingredientName">
-                                {{ingrediente.nome}}
-                            </span>
-                            <button class="removeIngredientBtn" (click)="removeIngredienteReceita(ingrediente.nome)">
-                                X
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            
+            <div class="control" *ngIf="ingredientes">
+                <select class="input" (change)="addIngrediente()" [formControlName]="'ingredientes'">
+                    <option></option>
+                    <option *ngFor="let ingrediente of ingredientes" [value]="ingrediente._id">
+                      {{ingrediente.nome + " - " + ingrediente.quantidade + " " + ingrediente.unidade}}
+                    </option>
+                </select>
             </div>
-          </div>
-
-        <!--| Season of the Year |-->
-        <div class="field">
-            <label class="label">Estação do Ano</label>
-            <div class="control">
-              <input
-                [ngClass]="{
-                  'input': true,
-                  'is-success': estacao_ano.valid && estacao_ano.value != null,
-                  'is-danger': !estacao_ano.valid && estacao_ano.value != null
-                  }"
-                type="text" formControlName="estacao_ano">
-            </div>
+        </div>
+        <div class="content" *ngIf="ingredientesReceita.length > 0">
+          <div>Ingredientes Selecionados</div>
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let ingredienteReceita of ingredientesReceita">
+                <td>{{ingredienteReceita.nome + " - " + ingredienteReceita.quantidade + " " + ingredienteReceita.unidade}}</td>
+                <td class="is-justify-content-end">
+                  <button type="button" class="button is-danger" (click)="excluirIngredienteDaReceita(ingredienteReceita)">Excluir</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <!--| Submit Btn |-->
