@@ -1,20 +1,31 @@
+<!--| navigation bar |-->
 <div class="tabs is-toggle is-centered is-medium mt-4">
   <ul>
+
+    <!--| with 'Receita' selected |-->
     <ng-template [ngIf]="tab == 'home'">
+
       <li class="is-active">
         <a>Receitas</a>
       </li>
+
       <li>
         <a routerLink="/ingredientes">Ingredientes</a>
       </li>
+
     </ng-template>
+
+    <!--| with 'Ingredientes' selected |-->
     <ng-template [ngIf]="tab == 'ingredientes'">
+
       <li>
         <a routerLink="/home">Receitas</a>
       </li>
+      
       <li class="is-active">
         <a>Ingredientes</a>
       </li>
+    
     </ng-template>
   </ul>
 </div>

@@ -12,26 +12,32 @@ export class WebService {
 
   baseURL = "https://tc2-backend-livro-receitas.glitch.me/api"
 
+  //busca todas as receitas
   getAllReceitas() {
     return this.http.get<Receita[]>(this.baseURL+"/receita", {observe:"response"})
   }
 
+  //busca todos os ingredientes
   getAllIngredientes(){
     return this.http.get<Ingrediente[]>(this.baseURL+"/ingrediente", {observe: "response"})
   }
 
+  //deleta a receita escolhida
   deleteReceita(receita: Receita) {
     return this.http.delete(this.baseURL+"/receita/"+receita._id, {observe: "response"})
   }
 
+  //deleta o ingrediente escolhido
   deletaIngrediente(ingrediente: Ingrediente) {
     return this.http.delete(this.baseURL+"/ingrediente/"+ingrediente._id, {observe: "response"})
   }
 
+  //busca o ingrediente por ID
   getIngredienteById(id_ingrediente: String) {
     return this.http.get<Ingrediente>(this.baseURL+"/ingrediente/"+id_ingrediente, {observe: "response"})
   }
 
+  //atualizada o ingrediente escolhido
   updateIngrediente(id: string, nome: string, quantidade: number, unidade: string) {
     let ingredienteData = new HttpParams();
 
@@ -42,6 +48,7 @@ export class WebService {
     return this.http.put(this.baseURL+"/ingrediente/"+id, ingredienteData, {observe:"response"});
   }
 
+  //adiciona um novo ingrediente
   addIngrediente(nome: string, quantidade: number, unidade: string) {
     let ingredienteData = new HttpParams();
     
@@ -52,7 +59,8 @@ export class WebService {
     return this.http.post(this.baseURL+"/ingrediente", ingredienteData, {observe: "response"});
   }
 
-  //TODO: receber e adicionar array de 'Ingrediente'
+  //adiciona uma receita
+  //TODO: Back-end nn ta gostando de eu mandar os Ingredientes como string
   addReceita(nome : string, minutos_preparo : number, modo_preparo : string, estacao_ano : string, ingredientes : Ingrediente[]) {
     let receitaData = new HttpParams();
     

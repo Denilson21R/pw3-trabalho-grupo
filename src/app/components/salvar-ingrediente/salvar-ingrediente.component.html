@@ -1,8 +1,14 @@
+<!--| nav com 'Ingredientes' selecionados |-->
 <app-tabs [tab]="'ingredientes'"></app-tabs>
+
+<!-- | Form Novo Ingrediente |-->
 <form class="m-6" [formGroup]="formIngrediente" (submit)="salvarIngrediente()">
   <h1 class="title">Atualizar Ingrediente</h1>
-  <div class="field">
+  
+  <!-- \ Nome \ -->
+  <div class="field"> 
     <label class="label">Nome</label>
+    
     <div class="control">
       <input
         [ngClass]="{
@@ -13,8 +19,11 @@
         type="text" formControlName="nome">
     </div>
   </div>
+  
+  <!-- \ Quantidade \ -->
   <div class="field">
     <label class="label">Quantidade</label>
+    
     <div class="control">
       <input
         [ngClass]="{
@@ -25,9 +34,13 @@
         type="number" formControlName="quantidade">
     </div>
   </div>
+  
+  <!-- \ Unidade \ -->
   <div class="field">
     <label class="label">Unidade</label>
+    
     <div class="control">
+      
       <input
         [ngClass]="{
           'input': true,
@@ -35,11 +48,16 @@
           'is-danger': !unidade.valid && unidade.value != null
           }"
         type="text" formControlName="unidade">
+    
     </div>
   </div>
+  
+  <!-- \ Submit Button \ -->
   <div class="field is-grouped">
+    
     <div class="control">
       <button type="submit" class="button is-link">Salvar</button>
     </div>
+  
   </div>
 </form>

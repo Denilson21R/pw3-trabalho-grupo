@@ -1,13 +1,25 @@
+<!--| nav com 'nada'(receitas) selecionado |-->
 <app-tabs tab="home"></app-tabs>
+
+<!--| Section Text |-->
 <div class="columns mt-4 ml-6 mr-6">
+
   <div class="column">
     <h1 class="title">Receitas</h1>
   </div>
+
 </div>
+
+<!--| Main |-->
 <div class="main mt-4 ml-6 mr-6">
+  
   <ng-template [ngIf]="receitas">
+    
     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+      
       <thead>
+
+        <!--| Titles |-->
         <tr>
           <th>Nome</th>
           <th>Tempo de Preparo</th>
@@ -15,23 +27,36 @@
           <th>Estacao do Ano</th>
           <th>Ações</th>
         </tr>
+
       </thead>
+      
       <tbody>
-      <tr *ngFor="let receita of receitas">
-        <td>{{receita.nome}}</td>
-        <td>{{receita.minutos_preparo | tempoPreparo}}</td>
-        <td>{{receita.modo_preparo}}</td>
-        <td>{{receita.estacao_ano??"Não encontrado"}}</td>
-        <td class="has-text-centered">
-          <!--TODO: maybe show a detail button to show recipes?-->
-          <button class="button is-link mr-2">Atualizar</button>
-          <button class="button is-danger" (click)="deletaReceita(receita)">Deletar</button>
-        </td>
-      </tr>
+
+        <!--| Descriptions |-->
+        <tr *ngFor="let receita of receitas">
+          
+          <td>{{receita.nome}}</td>
+          <td>{{receita.minutos_preparo | tempoPreparo}}</td>
+          <td>{{receita.modo_preparo}}</td>
+          <td>{{receita.estacao_ano??"Não encontrado"}}</td>
+          
+          <!--| Update/Delete Btns |-->
+          <td class="has-text-centered">
+            <!--TODO: maybe show a detail button to show recipes?-->
+            <button class="button is-link mr-2">Atualizar</button>
+            <button class="button is-danger" (click)="deletaReceita(receita)">Deletar</button>
+          </td>
+        
+        </tr>
       </tbody>
+
     </table>
+
   </ng-template>
+  
+  <!--| New Recipe Btn |-->
   <div class="column">
     <button class="button is-info recipeBtn" routerLink="/nova-receita">Nova Receita</button>
   </div>
+
 </div>

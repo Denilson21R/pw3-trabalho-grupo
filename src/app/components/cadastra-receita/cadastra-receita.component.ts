@@ -12,6 +12,7 @@ import { WebService } from 'src/web.service';
 })
 export class CadastraReceitaComponent implements OnInit {
 
+  // |- Vars Ingredientes -| \\
   ingrediente : Ingrediente = new Ingrediente();
   nomeIngrediente : string = '';
   qtdIngrediente : number = 0;
@@ -19,10 +20,14 @@ export class CadastraReceitaComponent implements OnInit {
   ingredientes!: Ingrediente[];
   ingredientesPrepared : string[];
   ingredientesSelecionados : Ingrediente[] = [];
+  // |- -- -| \\
 
+  // |- Vars Receita -| \\
   receita : Receita = new Receita();
   formReceita !: FormGroup;
+  // |- -- -| \\
 
+  //atribuindo as variaveis usadas na receita usando os inputs no forms
   get nome() { return this.formReceita.get('nome')!; }
   get minutos_preparo() { return this.formReceita.get('minutos_preparo')!; }
   get modo_preparo() { return this.formReceita.get('modo_preparo')!; }
@@ -46,21 +51,26 @@ export class CadastraReceitaComponent implements OnInit {
     });
   }
 
-  salvarReceita() {
-    //alert("clicou");
 
+  // -- | Receita | --
+
+  //verifica se a receita criada é admissivel para a inserção
+  salvarReceita() {
+
+    //.. se os inputs forem validos e existirem ingredientes, é cadastrada
     if(this.formReceita.valid && this.ingredientesSelecionados.length > 0){
       this.addReceita();
     
+    //caso contrario, mostra a situação para o usuário
     } else {
       alert("Receita inválida.");
     }
   }
 
+  //cadastra a receita descrita 
   private addReceita() {
 
-    alert("addentrado");
-
+    //.. usando o service
     this.web.addReceita(
       this.formReceita.controls["nome"].value,
       this.formReceita.controls["minutos_preparo"].value,
@@ -69,52 +79,68 @@ export class CadastraReceitaComponent implements OnInit {
       this.ingredientesSelecionados
     ).subscribe((response) => {
 
-      alert("webbado");
-
+      //caso der tudo certo...
       if (response.ok) {
-        alert("Receita salva com sucesso");
-        this.router.navigate(["/home"]);
+        
+        //.. mostra pro usuário...
+        alert("Receita salva com sucesso!");
+        
+        this.router.navigate(["/home"]); //..e volta pra main page
 
+      //caso contrario, mostra a situação para o usuário
       } else {
         alert("Ocorreu um erro ao salvar a receita");
       }
 
     })
   }
+  // -- | // | --
 
 
   // -- | Ingredientes | --
 
   //popula os ingredientes disponiveis
   private fillIngredientes() {
+    
+    //.. usando o service
     this.web.getAllIngredientes().subscribe((response) => {
+
+      //se der tudo certo, preenche com as infos recebidas
       if (response.ok) {
         this.ingredientes = response.body!;
 
+        //..e usa delas pra receber apenas os nomes que serão mostrados como opções para o usuário 
         this.ingredientesPrepared = this.ingredientes.map(elem => {
           return elem.nome;
         })
 
+        //setando como primogenito o primeiro elemento da lista
         this.nomeIngrediente = this.ingredientesPrepared[0];
 
-        console.log("newzes: ", this.ingredientesPrepared);
+        //console.log("newzes: ", this.ingredientesPrepared);
 
+      //caso contrario, mostra falha
       } else {
         alert("Ocorreu um erro ao obter os ingredientes");
       }
+    
     })
   }
 
   //adiciona cada ingrediente selecionado pelo o usuario
   protected adicionaIngredienteReceita() {
 
+    //.. caso ele tenha escolhido algum e seja mais de 1 unidade
     if(this.qtdIngrediente > 0 && this.nomeIngrediente != undefined) {
 
-      console.log('até antes: ', this.ingredientesSelecionados)
+      //console.log('até antes: ', this.ingredientesSelecionados)
 
+      //verifica primeiro se ele já está na adicionado
       if(this.ingredienteNaReceita(this.nomeIngrediente)) {
         alert('Ingrediente já está na receita!');
       
+      //caso contrário, adiciona manualmente
+      //TODO: verificar se o ingrediente pode realmente ser adicionado assim
       } else {
         this.ingredientesSelecionados.push(
           {
@@ -126,8 +152,9 @@ export class CadastraReceitaComponent implements OnInit {
         );
       }
 
-      console.log('até agora: ', this.ingredientesSelecionados)
+      //console.log('até agora: ', this.ingredientesSelecionados)
     
+    //caso contrario, mostra uma mensagem genérica de falha
     } else {
       alert('Quantidade inválida.');
 
@@ -156,7 +183,7 @@ export class CadastraReceitaComponent implements OnInit {
   //remove um dos ingredientes selecionados
   protected removeIngredienteReceita(nomeIngrediente : string) {
     
-    console.log('antes ingre: ', this.ingredientesSelecionados);
+    //console.log('antes ingre: ', this.ingredientesSelecionados);
     
     this.ingredientesSelecionados.forEach((opcao, index) => {
       if(opcao.nome == nomeIngrediente) {
@@ -164,7 +191,7 @@ export class CadastraReceitaComponent implements OnInit {
       }
     })
 
-    console.log('dps ingrs: ', this.ingredientesSelecionados);
+    //console.log('dps ingrs: ', this.ingredientesSelecionados);
 
   }
   // -- | // | --

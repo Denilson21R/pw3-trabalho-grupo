@@ -1,5 +1,6 @@
 import {Ingrediente} from "./Ingrediente";
 
+//formato de uma receita | _id/createdAt/updatedAt/__v são populados pelo servidor
 export class Receita{
   _id!: string
   nome!: string

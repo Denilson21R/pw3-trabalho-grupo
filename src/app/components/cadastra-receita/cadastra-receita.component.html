@@ -59,8 +59,11 @@
 
         <!--| Ingredients |-->
         <div class="field">
+            
             <label class="label">Ingredientes</label>
+            
             <div class="control">
+                
                 <label>Qtde: </label>
                 <input [(ngModel)]="this.qtdIngrediente" [ngClass]="{
                   'input': true,
@@ -70,7 +73,9 @@
                 
                 <label>Opções: </label>
                 <select (change)="mudaIngrediente($event)">
+                    
                     <option *ngFor="let ingrd of this.ingredientesPrepared" [value]="ingrd">{{ingrd}}</option>
+                
                 </select> <button (click)="adicionaIngredienteReceita()">✓</button>
                   
                 <div class="showIngredientContainer" *ngIf="this.ingredientesSelecionados">
