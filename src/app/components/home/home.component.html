@@ -26,7 +26,6 @@
         <td>{{receita.modo_preparo}}</td>
         <td>{{receita.estacao_ano??"Não encontrado"}}</td>
         <td class="has-text-centered">
-          <!--TODO: maybe show a detail button to show recipes?-->
           <button class="button is-small is-link mr-2" routerLink="atualizar/{{receita._id}}">Atualizar</button>
           <button class="button is-small is-danger" (click)="deletaReceita(receita)">Deletar</button>
         </td>

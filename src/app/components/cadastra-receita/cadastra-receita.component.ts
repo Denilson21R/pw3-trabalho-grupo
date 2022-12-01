@@ -79,8 +79,9 @@ export class CadastraReceitaComponent implements OnInit {
   }
 
   addIngredienteNaReceita(ingrediente: Ingrediente) {
-    //TODO: verificar se ja existe, se der
-    this.ingredientesReceita.push(ingrediente)
+    if(!this.ingredientesReceita.includes(ingrediente)) {
+      this.ingredientesReceita.push(ingrediente)
+    }
   }
 
   addIngrediente() {

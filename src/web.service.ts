@@ -70,7 +70,6 @@ export class WebService {
     receitaData = receitaData.set("minutos_preparo", receita.minutos_preparo);
     receitaData = receitaData.set("modo_preparo", receita.modo_preparo);
     receitaData = receitaData.set("estacao_ano", receita.estacao_ano);
-    //TODO: a receita recebe uma lista de objetos ingrediente, mas nao tem como passar isso via httpparams
     //receitaData = receitaData.set("ingredientes", JSON.stringify(receita.ingredientes))
     return this.http.put(this.baseURL+"/receita/"+receita._id, receitaData, {observe:"response"});
   }
