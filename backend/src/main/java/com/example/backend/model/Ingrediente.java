@@ -21,6 +21,13 @@ public class Ingrediente {
     public Ingrediente() {
     }
 
+    public Ingrediente(String nome, Long quantidade, String unidade) {
+        this.nome = nome;
+        this.quantidade = quantidade;
+        this.unidade = unidade;
+        this.status = IngredienteStatus.ATIVO;
+    }
+
     public Long getId() {
         return id;
     }
