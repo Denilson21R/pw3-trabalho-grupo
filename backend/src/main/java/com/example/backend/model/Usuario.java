@@ -1,5 +1,7 @@
 package com.example.backend.model;
 
+import org.springframework.security.crypto.bcrypt.BCrypt;
+
 import javax.persistence.*;
 
 @Entity
@@ -18,6 +20,12 @@ public class Usuario {
     private String senha;
 
     public Usuario() {
+    }
+
+    public Usuario(String nome, String login, String senha) {
+        this.nome = nome;
+        this.login = login;
+        this.senha = BCrypt.hashpw(senha, BCrypt.gensalt());
     }
 
     public Long getId() {
