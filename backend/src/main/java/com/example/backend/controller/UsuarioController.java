@@ -74,21 +74,21 @@ public class UsuarioController {
         if(novoUsuario.containsKey("nome")
                 && novoUsuario.containsKey("login")
                 && novoUsuario.containsKey("senha")){
-            Optional<Usuario> usuario = usuarioRepository.findById(id);
-            if(usuario.isPresent()){
-                //TODO: verificar se ja existe alguem com esse login
-                Usuario usuarioEditar = usuario.get();
-                usuarioEditar.setNome(novoUsuario.get("nome"));
-                usuarioEditar.setLogin(novoUsuario.get("login"));
-                usuarioEditar.setSenha(BCrypt.hashpw(novoUsuario.get("senha"), BCrypt.gensalt()));
-                try{
+            try{
+                Optional<Usuario> usuario = usuarioRepository.findById(id);
+                if(usuario.isPresent()){
+                    //TODO: verificar se ja existe alguem com esse login
+                    Usuario usuarioEditar = usuario.get();
+                    usuarioEditar.setNome(novoUsuario.get("nome"));
+                    usuarioEditar.setLogin(novoUsuario.get("login"));
+                    usuarioEditar.setSenha(BCrypt.hashpw(novoUsuario.get("senha"), BCrypt.gensalt()));
                     Usuario usuarioEditado = usuarioRepository.save(usuarioEditar);
                     return new ResponseEntity<>(usuarioEditado, HttpStatus.OK);
-                }catch (Exception e){
-                    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+                }else{
+                    return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
                 }
-            }else{
-                return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
+            }catch (Exception e){
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }else{
             return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);

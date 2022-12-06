@@ -1,6 +1,10 @@
 package com.example.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -31,9 +35,30 @@ public class Receita {
                     referencedColumnName = "id"
             )
     )
+    @JsonIgnore()
     private List<Ingrediente> ingredientes;
 
     public Receita() {
+    }
+
+    public Receita(String nome, Long tempo_de_preparo, String estacao_ano, Usuario criador, String ingredientes) {
+        this.nome = nome;
+        this.tempo_de_preparo = tempo_de_preparo;
+        this.estacao_ano = estacao_ano;
+        this.criador_receita = criador;
+        addIngredientesToList(ingredientes);
+    }
+
+    public void addIngredientesToList(String ingredientes) {
+        String[] stringIdsIngredientes = ingredientes.split(",");
+        List<Ingrediente> ingredienteList = new ArrayList<>();
+        for (String id: stringIdsIngredientes) {
+            System.out.println(id);
+            Ingrediente ingrediente = new Ingrediente();
+            ingrediente.setId(Long.parseLong(id));
+            ingredienteList.add(ingrediente);
+        }
+        this.ingredientes = ingredienteList;
     }
 
     public Long getId() {
