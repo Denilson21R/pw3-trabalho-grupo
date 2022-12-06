@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+@CrossOrigin("http://localhost:4200")
 @RestController
 public class ReceitaController {
 
@@ -80,7 +81,7 @@ public class ReceitaController {
                     receita.setNome(novaReceita.get("estacao_ano"));
                     receita.addIngredientesToList(novaReceita.get("ingredientes"));
                     Receita receitaSalva = receitaRepository.save(receita);
-                    return new ResponseEntity<>(receitaSalva, HttpStatus.CREATED);
+                    return new ResponseEntity<>(receitaSalva, HttpStatus.OK);
                 }else{
                     return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
                 }
