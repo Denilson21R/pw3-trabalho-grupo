@@ -29,6 +29,16 @@ public class ReceitaController {
         }
     }
 
+    @GetMapping(value = "api/usuario/{id}/receitas")
+    public ResponseEntity<List<Receita>> getReceitasPorUsuario(@PathVariable(value = "id") Long id){
+        try{
+            List<Receita> ingredientes = receitaRepository.findReceitasByUsuarioId(id);
+            return new ResponseEntity<>(ingredientes, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping(value = "api/receita/{id}")
     public ResponseEntity<Receita> getReceitaPorId(@PathVariable(value = "id") Long id){
         try{

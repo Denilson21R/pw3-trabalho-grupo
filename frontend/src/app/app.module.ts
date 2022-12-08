@@ -7,11 +7,12 @@ import { HomeComponent } from './components/home/home.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { IngredientesComponent } from './components/ingredientes/ingredientes.component';
 import {HttpClientModule} from "@angular/common/http";
-import { TempoPreparoPipe } from './pipes/tempo-preparo.pipe';
 import { SalvarIngredienteComponent } from './components/salvar-ingrediente/salvar-ingrediente.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { CadastraReceitaComponent } from './components/cadastra-receita/cadastra-receita.component';
 import { AtualizarReceitaComponent } from './components/atualizar-receita/atualizar-receita.component';
+import { LoginComponent } from './components/login/login.component';
+import { CadastroComponent } from './components/cadastro/cadastro.component';
 
 @NgModule({
   declarations: [
@@ -19,10 +20,11 @@ import { AtualizarReceitaComponent } from './components/atualizar-receita/atuali
     HomeComponent,
     TabsComponent,
     IngredientesComponent,
-    TempoPreparoPipe,
     SalvarIngredienteComponent,
     CadastraReceitaComponent,
-    AtualizarReceitaComponent
+    AtualizarReceitaComponent,
+    LoginComponent,
+    CadastroComponent
   ],
     imports: [
         BrowserModule,

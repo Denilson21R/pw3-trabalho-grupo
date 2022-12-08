@@ -5,6 +5,8 @@ import {HomeComponent} from "./components/home/home.component";
 import {IngredientesComponent} from "./components/ingredientes/ingredientes.component";
 import {SalvarIngredienteComponent} from "./components/salvar-ingrediente/salvar-ingrediente.component";
 import {AtualizarReceitaComponent} from "./components/atualizar-receita/atualizar-receita.component";
+import {LoginComponent} from "./components/login/login.component";
+import {CadastroComponent} from "./components/cadastro/cadastro.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -13,7 +15,9 @@ const routes: Routes = [
   { path: 'ingredientes/atualizar/:id', component: SalvarIngredienteComponent },
   { path: 'ingredientes/novo', component: SalvarIngredienteComponent },
   { path: 'nova-receita', component: CadastraReceitaComponent},
-  { path: '', redirectTo: '/home', pathMatch: 'full' }
+  { path: 'login', component: LoginComponent},
+  { path: 'cadastrar', component: CadastroComponent},
+  { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({

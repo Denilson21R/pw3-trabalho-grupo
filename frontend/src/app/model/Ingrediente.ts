@@ -3,5 +3,5 @@ export class Ingrediente{
   nome!: string
   quantidade!:number
   unidade!:string
-  status!: number
+  status!: string
 }

@@ -54,7 +54,7 @@ export class SalvarIngredienteComponent implements OnInit {
 
   salvarIngrediente() {
     if(this.formIngrediente.valid){
-      if(this.ingrediente._id != null){
+      if(this.ingrediente.id != null){
         this.updateIngrediente();
       }else{
         this.addIngrediente();
@@ -79,7 +79,7 @@ export class SalvarIngredienteComponent implements OnInit {
 
   private updateIngrediente() {
     this.web.updateIngrediente(
-      this.ingrediente._id,
+      this.ingrediente.id,
       this.formIngrediente.controls["nome"].value,
       this.formIngrediente.controls["quantidade"].value,
       this.formIngrediente.controls["unidade"].value

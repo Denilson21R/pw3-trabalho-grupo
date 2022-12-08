@@ -164,8 +164,23 @@
 |                |  500   |          erro          |
 |                |  422   | receita não encontrada |
 
+#### 11. GET ```/api/usuario/{id}/receitas```
+- Parêmetros
 
-#### 11. POST ```/api/receita```
+| nome  | obrigatório |     tipo      |
+|:-----:|:-----------:|:-------------:|
+|  id   | obrigatório | string na url |
+
+- Retornos
+
+|          dados           | status |        condição        |
+|:------------------------:|:------:|:----------------------:|
+| lista de objetos receita |  200   |        sucesso         |
+|                          |  500   |          erro          |
+|                          |  422   | receita não encontrada |
+
+
+#### 12. POST ```/api/receita```
 - Parêmetros
 
 |       nome       | obrigatório |                        tipo                        |
@@ -186,7 +201,7 @@
 |                |  422   | ausência de parâmetros |
 
 
-#### 12. PUT ```/api/receita/{id}```
+#### 13. PUT ```/api/receita/{id}```
 - Parêmetros
 
 |       nome       | obrigatório |                        tipo                        |
@@ -208,7 +223,7 @@
 |                |  422   | receita não encontrado |
 
 
-#### 13. DELETE ```/api/receita/{id}```
+#### 14. DELETE ```/api/receita/{id}```
 - Parêmetros
 
 | nome  | obrigatório |     tipo      |

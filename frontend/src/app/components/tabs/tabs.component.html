@@ -1,20 +1,33 @@
-<div class="tabs is-toggle is-centered is-medium mt-4">
-  <ul>
-    <ng-template [ngIf]="tab == 'home'">
-      <li class="is-active">
-        <a>Receitas</a>
-      </li>
-      <li>
-        <a routerLink="/ingredientes">Ingredientes</a>
-      </li>
-    </ng-template>
-    <ng-template [ngIf]="tab == 'ingredientes'">
-      <li>
-        <a routerLink="/home">Receitas</a>
-      </li>
-      <li class="is-active">
-        <a>Ingredientes</a>
-      </li>
-    </ng-template>
-  </ul>
+<div class="columns">
+  <div class="column is-three-fifths">
+    <div class="tabs is-toggle is-pulled-right is-medium mt-4">
+      <ul>
+        <ng-template [ngIf]="tab == 'home'">
+          <li class="is-active">
+            <a>Receitas</a>
+          </li>
+          <li>
+            <a routerLink="/ingredientes">Ingredientes</a>
+          </li>
+        </ng-template>
+        <ng-template [ngIf]="tab == 'ingredientes'">
+          <li>
+            <a routerLink="/home">Receitas</a>
+          </li>
+          <li class="is-active">
+            <a>Ingredientes</a>
+          </li>
+        </ng-template>
+      </ul>
+    </div>
+  </div>
+  <ng-template [ngIf]="usuario">
+    <div class="column mt-5">
+      <div class="has-text-weight-bold">Seja bem-vindo {{usuario.nome}}!</div>
+    </div>
+    <div class="column mt-4">
+      <button class="button is-danger" (click)="sair()">Sair</button>
+    </div>
+  </ng-template>
 </div>
+

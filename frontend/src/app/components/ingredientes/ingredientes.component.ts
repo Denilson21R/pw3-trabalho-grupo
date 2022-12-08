@@ -25,15 +25,4 @@ export class IngredientesComponent implements OnInit {
       }
     })
   }
-
-  deletaIngrediente(ingrediente: Ingrediente) {
-    this.web.deletaIngrediente(ingrediente).subscribe((response)=>{
-      if(response.ok){
-        alert("Ingrediente deletado com sucesso");
-        this.fillIngredientes()
-      }else{
-        alert("Ocorreu um erro ao deletar o ingrediente");
-      }
-    })
-  }
 }

@@ -1,0 +1,49 @@
+<div class="container mt-5 form-cadastro">
+  <h1 class="title">Cadastro</h1>
+  <form [formGroup]="formCadastro" (submit)="register()">
+    <div class="field">
+      <label class="label">Nome</label>
+      <div class="control">
+        <input
+          [ngClass]="{
+          'input': true,
+          'is-success': nome.valid && nome.value != null,
+          'is-danger': !nome.valid && nome.value != null
+          }"
+          type="text" formControlName="nome">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Login</label>
+      <div class="control">
+        <input
+          [ngClass]="{
+          'input': true,
+          'is-success': login.valid && login.value != null,
+          'is-danger': !login.valid && login.value != null
+          }"
+          type="text" formControlName="login">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Senha</label>
+      <div class="control">
+        <input
+          [ngClass]="{
+          'input': true,
+          'is-success': senha.valid && senha.value != null,
+          'is-danger': !senha.valid && senha.value != null
+          }"
+          type="password" formControlName="senha">
+      </div>
+    </div>
+    <div class="field is-grouped">
+      <div class="control">
+        <button type="submit" class="button is-link">Cadastrar-se</button>
+      </div>
+      <div class="control">
+        <button type="button" routerLink="/login" class="button is-danger">Voltar para Login</button>
+      </div>
+    </div>
+  </form>
+</div>

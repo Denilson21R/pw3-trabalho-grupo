@@ -31,8 +31,8 @@ export class CadastraReceitaComponent implements OnInit {
     this.formReceita = new FormGroup({
       nome: new FormControl(this.receita.nome, [Validators.required, Validators.minLength(2)]),
       ingredientes: new FormControl(null, []),
-      minutos_preparo: new FormControl(this.receita.minutos_preparo, [Validators.required, Validators.min(1)]),
-      modo_preparo: new FormControl(this.receita.modo_preparo, [Validators.required, Validators.minLength(15)]),
+      minutos_preparo: new FormControl(this.receita.tempo_de_preparo, [Validators.required, Validators.min(1)]),
+      modo_preparo: new FormControl(this.receita.modo_de_preparo, [Validators.required, Validators.minLength(15)]),
       estacao_ano: new FormControl(this.receita.estacao_ano, [Validators.required, Validators.minLength(5)])
     });
   }
@@ -87,7 +87,7 @@ export class CadastraReceitaComponent implements OnInit {
   addIngrediente() {
     let ingredienteAdd = this.formReceita.controls["ingredientes"].value
     this.ingredientes.forEach((ingredienteVerificar)=>{
-      if(ingredienteVerificar._id == ingredienteAdd){
+      if(ingredienteVerificar.id == ingredienteAdd){
         this.addIngredienteNaReceita(ingredienteVerificar)
       }
     })
@@ -104,7 +104,7 @@ export class CadastraReceitaComponent implements OnInit {
   private converteArrayId(ingredientesReceita: Ingrediente[]) {
     let arrayId: String[] = []
     ingredientesReceita.forEach((objetoCompletoIngrediente)=>{
-      arrayId.push(objetoCompletoIngrediente._id)
+      arrayId.push(objetoCompletoIngrediente.id)
     })
     return arrayId;
   }

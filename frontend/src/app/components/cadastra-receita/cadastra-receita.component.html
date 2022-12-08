@@ -69,7 +69,7 @@
             <div class="control" *ngIf="ingredientes">
                 <select class="input" (change)="addIngrediente()" [formControlName]="'ingredientes'">
                     <option></option>
-                    <option *ngFor="let ingrediente of ingredientes" [value]="ingrediente._id">
+                    <option *ngFor="let ingrediente of ingredientes" [value]="ingrediente.id">
                       {{ingrediente.nome + " - " + ingrediente.quantidade + " " + ingrediente.unidade}}
                     </option>
                 </select>
@@ -103,14 +103,14 @@
         <!-- Alerta de sucesso -->
         <div id="modal-sucess" class="modal">
           <div class="modal-background"></div>
-        
+
           <div class="modal-content">
             <div class="box">
               <p>Modal JS example</p>
               <!-- Your content -->
             </div>
           </div>
-        
+
           <button class="modal-close is-large" aria-label="close"></button>
         </div>
     </form>

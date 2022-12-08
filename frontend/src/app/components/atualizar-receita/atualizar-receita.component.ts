@@ -29,8 +29,8 @@ export class AtualizarReceitaComponent implements OnInit {
   private initForm() {
     this.formReceita = new FormGroup({
       nome: new FormControl(this.receita.nome, [Validators.required, Validators.minLength(2)]),
-      minutos_preparo: new FormControl(this.receita.minutos_preparo, [Validators.required, Validators.min(1)]),
-      modo_preparo: new FormControl(this.receita.modo_preparo, [Validators.required, Validators.minLength(15)]),
+      minutos_preparo: new FormControl(this.receita.tempo_de_preparo, [Validators.required, Validators.min(1)]),
+      modo_preparo: new FormControl(this.receita.modo_de_preparo, [Validators.required, Validators.minLength(15)]),
       estacao_ano: new FormControl(this.receita.estacao_ano, [Validators.required, Validators.minLength(5)])
     });
   }
