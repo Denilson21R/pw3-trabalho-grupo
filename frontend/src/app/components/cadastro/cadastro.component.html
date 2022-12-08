@@ -1,3 +1,4 @@
+<app-tabs-login [tab]="'cadastro'"></app-tabs-login>
 <div class="container mt-5 form-cadastro">
   <h1 class="title">Cadastro</h1>
   <form [formGroup]="formCadastro" (submit)="register()">
@@ -40,9 +41,6 @@
     <div class="field is-grouped">
       <div class="control">
         <button type="submit" class="button is-link">Cadastrar-se</button>
-      </div>
-      <div class="control">
-        <button type="button" routerLink="/login" class="button is-danger">Voltar para Login</button>
       </div>
     </div>
   </form>

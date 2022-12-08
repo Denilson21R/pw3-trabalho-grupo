@@ -44,7 +44,8 @@ export class SalvarIngredienteComponent implements OnInit {
     this.formIngrediente = new FormGroup({
       nome: new FormControl(this.ingrediente.nome, [Validators.required, Validators.minLength(2)]),
       quantidade: new FormControl(this.ingrediente.quantidade, [Validators.required, Validators.min(1)]),
-      unidade: new FormControl(this.ingrediente.unidade, [Validators.required])
+      unidade: new FormControl(this.ingrediente.unidade, [Validators.required]),
+      status: new FormControl(null, [])
     });
   }
 
@@ -82,7 +83,8 @@ export class SalvarIngredienteComponent implements OnInit {
       this.ingrediente.id,
       this.formIngrediente.controls["nome"].value,
       this.formIngrediente.controls["quantidade"].value,
-      this.formIngrediente.controls["unidade"].value
+      this.formIngrediente.controls["unidade"].value,
+      this.formIngrediente.controls["status"].value
     ).subscribe((response) => {
       if (response.ok) {
         alert("Ingrediente atualizado com sucesso")

@@ -1,0 +1,42 @@
+<div class="columns">
+  <div class="column is-three-fifths">
+    <div class="tabs is-toggle is-pulled-right is-medium mt-4">
+      <ul>
+        <ng-template [ngIf]="tab == 'login'">
+          <li class="is-active">
+            <a>Login</a>
+          </li>
+          <li>
+            <a routerLink="/cadastrar">Cadastro</a>
+          </li>
+          <li>
+            <a routerLink="/receitas">Receitas</a>
+          </li>
+        </ng-template>
+        <ng-template [ngIf]="tab == 'cadastro'">
+          <li>
+            <a routerLink="/login">Login</a>
+          </li>
+          <li class="is-active">
+            <a>Cadastro</a>
+          </li>
+          <li>
+            <a routerLink="/receitas">Receitas</a>
+          </li>
+        </ng-template>
+        <ng-template [ngIf]="tab == 'receitas'">
+          <li>
+            <a routerLink="/login">Login</a>
+          </li>
+          <li>
+            <a routerLink="/cadastrar">Cadastro</a>
+          </li>
+          <li class="is-active">
+            <a>Receitas</a>
+          </li>
+        </ng-template>
+      </ul>
+    </div>
+  </div>
+</div>
+

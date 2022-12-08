@@ -1,3 +1,4 @@
+<app-tabs-login [tab]="'login'"></app-tabs-login>
 <div class="container mt-5 form-login">
   <h1 class="title">Login</h1>
   <form [formGroup]="formLogin" (submit)="loginForm()">
@@ -28,9 +29,6 @@
     <div class="field is-grouped">
       <div class="control">
         <button type="submit" class="button is-link">Login</button>
-      </div>
-      <div class="control">
-        <button type="button" class="button is-info" routerLink="/cadastrar">Ir para cadastro</button>
       </div>
     </div>
   </form>

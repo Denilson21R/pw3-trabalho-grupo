@@ -33,14 +33,13 @@ export class WebService {
     return this.http.get<Ingrediente>(this.baseURL+"/ingrediente/"+id_ingrediente, {observe: "response"})
   }
 
-  updateIngrediente(id: string, nome: string, quantidade: number, unidade: string) {
+  updateIngrediente(id: string, nome: string, quantidade: number, unidade: string, status: string) {
     let ingredienteData = new HttpParams();
 
     ingredienteData = ingredienteData.set("nome", nome);
     ingredienteData = ingredienteData.set("quantidade", quantidade);
     ingredienteData = ingredienteData.set("unidade", unidade);
-    //TODO: no modal de atualizar ingredientes por a opção de status
-
+    ingredienteData = ingredienteData.set("status", status);
     return this.http.put(this.baseURL+"/ingrediente/"+id, ingredienteData, {observe:"response"});
   }
 

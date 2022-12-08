@@ -15,6 +15,7 @@
         <th>Nome</th>
         <th>Quantidade</th>
         <th>Unidade</th>
+        <th>Status</th>
         <th>Ações</th>
       </tr>
       </thead>
@@ -23,6 +24,7 @@
           <td>{{ingrediente.nome}}</td>
           <td>{{ingrediente.quantidade}}</td>
           <td>{{ingrediente.unidade}}</td>
+          <td>{{ingrediente.status | titlecase}}</td>
           <td class="acoes has-text-centered">
             <button class="button is-link mr-2" routerLink="atualizar/{{ingrediente.id}}">Atualizar</button>
           </td>

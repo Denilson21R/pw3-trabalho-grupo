@@ -7,6 +7,7 @@ import {SalvarIngredienteComponent} from "./components/salvar-ingrediente/salvar
 import {AtualizarReceitaComponent} from "./components/atualizar-receita/atualizar-receita.component";
 import {LoginComponent} from "./components/login/login.component";
 import {CadastroComponent} from "./components/cadastro/cadastro.component";
+import {ReceitasComponent} from "./components/receitas/receitas.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'nova-receita', component: CadastraReceitaComponent},
   { path: 'login', component: LoginComponent},
   { path: 'cadastrar', component: CadastroComponent},
+  { path: 'receitas', component: ReceitasComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 

@@ -13,6 +13,8 @@ import { CadastraReceitaComponent } from './components/cadastra-receita/cadastra
 import { AtualizarReceitaComponent } from './components/atualizar-receita/atualizar-receita.component';
 import { LoginComponent } from './components/login/login.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
+import { TabsLoginComponent } from './components/tabs-login/tabs-login.component';
+import { ReceitasComponent } from './components/receitas/receitas.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { CadastroComponent } from './components/cadastro/cadastro.component';
     CadastraReceitaComponent,
     AtualizarReceitaComponent,
     LoginComponent,
-    CadastroComponent
+    CadastroComponent,
+    TabsLoginComponent,
+    ReceitasComponent
   ],
     imports: [
         BrowserModule,

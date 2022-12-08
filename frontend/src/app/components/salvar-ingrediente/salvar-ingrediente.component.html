@@ -1,6 +1,7 @@
 <app-tabs [tab]="'ingredientes'"></app-tabs>
 <form class="m-6" [formGroup]="formIngrediente" (submit)="salvarIngrediente()">
-  <h1 class="title">Atualizar Ingrediente</h1>
+  <h1 class="title" *ngIf="ingrediente.id != null">Atualizar Ingrediente</h1>
+  <h1 class="title" *ngIf="ingrediente.id == null">Novo Ingrediente</h1>
   <div class="field">
     <label class="label">Nome</label>
     <div class="control">
@@ -10,7 +11,7 @@
           'is-success': nome.valid && nome.value != null,
           'is-danger': !nome.valid && nome.value != null
           }"
-        type="text" formControlName="nome">
+        type="text" formControlName="nome" [readonly]="ingrediente.id != null">
     </div>
   </div>
   <div class="field">
@@ -34,8 +35,16 @@
           'is-success': unidade.valid && unidade.value != null,
           'is-danger': !unidade.valid && unidade.value != null
           }"
-        type="text" formControlName="unidade">
+        type="text" formControlName="unidade" [readonly]="ingrediente.id != null">
     </div>
+  </div>
+  <div class="field" *ngIf="ingrediente.id != null">
+    <label class="label">Status</label>
+    <select class="input" formControlName="status" >
+      <option></option>
+      <option ngValue="0" [selected]="ingrediente.status == 'ATIVO'">Ativo</option>
+      <option ngValue="1" [selected]="ingrediente.status == 'INATIVO'">Inativo</option>
+    </select>
   </div>
   <div class="field is-grouped">
     <div class="control">
