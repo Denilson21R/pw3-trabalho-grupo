@@ -56,9 +56,10 @@ export class WebService {
   addReceita(nome : string, minutos_preparo : number, modo_preparo : string, estacao_ano : string, ingredientes : String[]) {
     let receitaData = new HttpParams();
     receitaData = receitaData.set("nome", nome);
-    receitaData = receitaData.set("minutos_preparo", minutos_preparo);
+    receitaData = receitaData.set("tempo_de_preparo", minutos_preparo);
     receitaData = receitaData.set("modo_preparo", modo_preparo);
     receitaData = receitaData.set("estacao_ano", estacao_ano);
+    receitaData = receitaData.set("criador", sessionStorage.getItem("id"));
     receitaData = receitaData.set("ingredientes", ingredientes.join(","))
     return this.http.post(this.baseURL+"/receita", receitaData, {observe: "response"});
   }
@@ -67,13 +68,13 @@ export class WebService {
     return this.http.get<Receita>(this.baseURL+"/receita/"+id_receita, {observe: "response"})
   }
 
-  atualizarReceita(receita: Receita) {
+  atualizarReceita(id: string, nome: string, modo_de_preparo: string, tempo_de_preparo: number, estacao_ano: string) {
     let receitaData = new HttpParams();
-    receitaData = receitaData.set("nome", receita.nome);
-    receitaData = receitaData.set("tempo_de_preparo", receita.tempo_de_preparo);
-    receitaData = receitaData.set("modo_preparo", receita.modo_de_preparo);
-    receitaData = receitaData.set("estacao_ano", receita.estacao_ano);
-    return this.http.put(this.baseURL+"/receita/"+receita.id, receitaData, {observe:"response"});
+    receitaData = receitaData.set("nome", nome);
+    receitaData = receitaData.set("tempo_de_preparo", tempo_de_preparo);
+    receitaData = receitaData.set("modo_preparo", modo_de_preparo);
+    receitaData = receitaData.set("estacao_ano", estacao_ano);
+    return this.http.put(this.baseURL+"/receita/"+id, receitaData, {observe:"response"});
   }
 
   login(login: string, senha: string) {
@@ -90,6 +91,4 @@ export class WebService {
     cadastroData = cadastroData.set("nome", nome);
     return this.http.post<Usuario>(this.baseURL+"/usuario", cadastroData, {observe:"response"})
   }
-
-
 }

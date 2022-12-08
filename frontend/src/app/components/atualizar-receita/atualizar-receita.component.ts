@@ -51,7 +51,13 @@ export class AtualizarReceitaComponent implements OnInit {
   }
 
   salvarReceita() {
-    this.web.atualizarReceita(this.receita).subscribe((response)=>{
+    this.web.atualizarReceita(
+      this.receita.id,
+      this.formReceita.controls["nome"].value,
+      this.formReceita.controls["modo_preparo"].value,
+      this.formReceita.controls["minutos_preparo"].value,
+      this.formReceita.controls["estacao_ano"].value,
+    ).subscribe((response)=>{
       if(response.ok){
         alert("Receita atualizada com sucesso");
         this.router.navigate(["/home"]);

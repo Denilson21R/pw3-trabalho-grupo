@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {WebService} from "../../../web.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-cadastro',
@@ -10,7 +11,7 @@ import {WebService} from "../../../web.service";
 export class CadastroComponent implements OnInit {
   formCadastro: FormGroup;
 
-  constructor(private web: WebService) { }
+  constructor(private web: WebService, private router: Router) { }
 
   ngOnInit(): void {
     this.initForm()
@@ -25,6 +26,7 @@ export class CadastroComponent implements OnInit {
       ).subscribe((response)=>{
         if(response.ok){
           alert("salvo com sucesso!")
+          this.router.navigate(["login"])
         }else{
           alert("erro")
         }

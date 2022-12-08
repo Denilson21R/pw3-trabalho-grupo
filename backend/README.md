@@ -211,7 +211,6 @@
 | tempo_de_preparo | obrigatório |                      inteiro                       |
 |   estacao_ano    | obrigatório |                       string                       |
 |   modo_preparo   | obrigatório |                       string                       |
-|   ingredientes   | obrigatório | string com ids separados por vírgula (ex. '1,3,5') |
 
 - Retornos
 
