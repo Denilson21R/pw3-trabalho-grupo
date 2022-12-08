@@ -1,4 +1,4 @@
-<div class="columns">
+<div class="columns tab">
   <div class="column is-three-fifths">
     <div class="tabs is-toggle is-pulled-right is-medium mt-4">
       <ul>
@@ -21,7 +21,7 @@
       </ul>
     </div>
   </div>
-  <ng-template [ngIf]="usuario">
+  <ng-template [ngIf]="usuario" class="templateWelcome">
     <div class="column mt-5">
       <div class="has-text-weight-bold">Seja bem-vindo {{usuario.nome}}!</div>
     </div>
