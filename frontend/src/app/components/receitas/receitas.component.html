@@ -1,5 +1,29 @@
 <app-tabs-login [tab]="'receitas'"></app-tabs-login>
-<div class="container mt-5 form-login">
-  <h1 class="title">Receitas</h1>
-  Aqui vai a lista de todas as receitas
+<div class="columns mt-4 ml-6 mr-6">
+  <div class="column is-half">
+    <h1 class="title">Receitas</h1>
+  </div>
+</div>
+<div class="main mt-4 ml-6 mr-6">
+  <ng-template [ngIf]="receitas">
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+      <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Tempo de Preparo</th>
+        <th>Modo de Preparo</th>
+        <th>Estacao do Ano</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let receita of receitas">
+        <td>{{receita.nome}}</td>
+        <td>{{receita.tempo_de_preparo}} minutos</td>
+        <td>{{receita.modo_de_preparo}}</td>
+        <td>{{receita.estacao_ano}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </ng-template>
+
 </div>

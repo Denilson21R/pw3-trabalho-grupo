@@ -1,7 +1,7 @@
 <app-tabs tab="home"></app-tabs>
 <div class="columns mt-4 ml-6 mr-6">
   <div class="column">
-    <h1 class="title">Receitas</h1>
+    <h1 class="title">Minhas Receitas</h1>
   </div>
   <div class="column">
     <button class="button is-info btn-add" routerLink="/nova-receita">Nova Receita</button>
@@ -23,7 +23,7 @@
       <tr *ngFor="let receita of receitas">
         <td>{{receita.nome}}</td>
         <td>{{receita.tempo_de_preparo}}</td>
-        <td>{{receita.modo_de_preparo}}</td>
+        <td>{{receita.modo_de_preparo}} minutos</td>
         <td>{{receita.estacao_ano??"Não encontrado"}}</td>
         <td class="has-text-centered">
           <button class="button is-small is-link mr-2" routerLink="atualizar/{{receita.id}}">Atualizar</button>
