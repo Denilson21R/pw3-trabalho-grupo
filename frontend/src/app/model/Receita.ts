@@ -1,10 +1,9 @@
 import {Ingrediente} from "./Ingrediente";
 
 export class Receita{
-  _id!: string
+  id!: string
   nome!: string
-  minutos_preparo!: number
-  modo_preparo!: string
+  tempo_de_preparo!: number
   ingredientes!: Ingrediente[]
   estacao_ano?: string
   createdAt?: string

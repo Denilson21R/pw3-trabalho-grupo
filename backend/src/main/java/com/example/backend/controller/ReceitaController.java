@@ -45,7 +45,8 @@ public class ReceitaController {
             && novaReceita.containsKey("tempo_de_preparo")
             && novaReceita.containsKey("estacao_ano")
             && novaReceita.containsKey("criador")
-            && novaReceita.containsKey("ingredientes")){
+            && novaReceita.containsKey("ingredientes")
+            && novaReceita.containsKey("modo_preparo")){
             try{
                 Usuario criador = new Usuario();
                 criador.setId(Long.parseLong(novaReceita.get("criador")));
@@ -54,6 +55,7 @@ public class ReceitaController {
                         Long.parseLong(novaReceita.get("tempo_de_preparo")),
                         novaReceita.get("estacao_ano"),
                         criador,
+                        novaReceita.get("modo_preparo"),
                         novaReceita.get("ingredientes")
                 );
                 Receita receitaSalva = receitaRepository.save(receita);
@@ -71,14 +73,16 @@ public class ReceitaController {
         if(novaReceita.containsKey("nome")
                 && novaReceita.containsKey("tempo_de_preparo")
                 && novaReceita.containsKey("estacao_ano")
+                && novaReceita.containsKey("modo_preparo")
                 && novaReceita.containsKey("ingredientes")){
             try{
                 Optional<Receita> receitaAtualizar = receitaRepository.findById(id);
                 if(receitaAtualizar.isPresent()){
                     Receita receita = receitaAtualizar.get();
                     receita.setNome(novaReceita.get("nome"));
-                    receita.setNome(novaReceita.get("tempo_de_preparo"));
-                    receita.setNome(novaReceita.get("estacao_ano"));
+                    receita.setTempo_de_preparo(Long.parseLong(novaReceita.get("tempo_de_preparo")));
+                    receita.setEstacao_ano(novaReceita.get("estacao_ano"));
+                    receita.setModo_de_preparo(novaReceita.get("modo_preparo"));
                     receita.addIngredientesToList(novaReceita.get("ingredientes"));
                     Receita receitaSalva = receitaRepository.save(receita);
                     return new ResponseEntity<>(receitaSalva, HttpStatus.OK);

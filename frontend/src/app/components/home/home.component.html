@@ -22,7 +22,7 @@
       <tbody>
       <tr *ngFor="let receita of receitas">
         <td>{{receita.nome}}</td>
-        <td>{{receita.minutos_preparo | tempoPreparo}}</td>
+        <td>{{receita.minutos_preparo}}</td>
         <td>{{receita.modo_preparo}}</td>
         <td>{{receita.estacao_ano??"Não encontrado"}}</td>
         <td class="has-text-centered">

@@ -18,6 +18,8 @@ public class Receita {
     @Column(nullable = false)
     private Long tempo_de_preparo;
     @Column(nullable = false)
+    private String modo_de_preparo;
+    @Column(nullable = false)
     private String estacao_ano;
 
     @ManyToOne
@@ -41,12 +43,22 @@ public class Receita {
     public Receita() {
     }
 
-    public Receita(String nome, Long tempo_de_preparo, String estacao_ano, Usuario criador, String ingredientes) {
+
+    public Receita(String nome, Long tempo_de_preparo, String estacao_ano, Usuario criador, String modo_preparo, String ingredientes) {
         this.nome = nome;
         this.tempo_de_preparo = tempo_de_preparo;
         this.estacao_ano = estacao_ano;
         this.criador_receita = criador;
+        this.modo_de_preparo = modo_preparo;
         addIngredientesToList(ingredientes);
+    }
+
+    public String getModo_de_preparo() {
+        return modo_de_preparo;
+    }
+
+    public void setModo_de_preparo(String modo_de_preparo) {
+        this.modo_de_preparo = modo_de_preparo;
     }
 
     public void addIngredientesToList(String ingredientes) {
