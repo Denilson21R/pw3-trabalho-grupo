@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {WebService} from "../../../web.service";
 import {Receita} from "../../model/Receita";
 import {Router} from "@angular/router";
+import {toast} from "bulma-toast";
 
 @Component({
   selector: 'app-home',
@@ -24,7 +25,11 @@ export class HomeComponent implements OnInit {
         if (response.ok) {
           this.receitas = response.body!
         } else {
-          alert("Ocorreu um erro ao obter as receitas");
+          toast({
+            message: 'Ocorreu um erro ao obter as receitas',
+            duration: 2000,
+            type: 'is-danger'
+          })
         }
       })
     }else{
@@ -35,10 +40,18 @@ export class HomeComponent implements OnInit {
   deletaReceita(receita: Receita) {
     this.web.deleteReceita(receita).subscribe((response)=>{
       if(response.ok){
-        alert("Receita deletada com sucesso");
+        toast({
+          message: 'Receita deletada com sucesso',
+          duration: 2000,
+          type: 'is-success'
+        })
         this.fillReceitas()
       }else{
-        alert("Ocorreu um erro ao deletar a receita");
+        toast({
+          message: 'Ocorreu um erro ao deletar a receita',
+          duration: 2000,
+          type: 'is-danger'
+        })
       }
     })
   }

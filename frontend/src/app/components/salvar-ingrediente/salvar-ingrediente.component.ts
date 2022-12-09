@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Ingrediente} from "../../model/Ingrediente";
 import {WebService} from "../../../web.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {toast} from "bulma-toast";
 
 @Component({
   selector: 'app-salvar-ingrediente',
@@ -34,7 +35,11 @@ export class SalvarIngredienteComponent implements OnInit {
       if (response.ok) {
         this.ingrediente = response.body!
       } else {
-        alert("Ocorreu um erro ao obter o ingrediente");
+        toast({
+          message: 'Ocorreu um erro ao obter o ingrediente',
+          duration: 2000,
+          type: 'is-danger'
+        })
       }
       this.initForm();
     })
@@ -70,10 +75,18 @@ export class SalvarIngredienteComponent implements OnInit {
       this.formIngrediente.controls["unidade"].value
     ).subscribe((response) => {
       if (response.ok) {
-        alert("Ingrediente salvo com sucesso")
+        toast({
+          message: 'Ingrediente salvo com sucesso',
+          duration: 2000,
+          type: 'is-success'
+        })
         this.router.navigate(["/ingredientes"])
       } else {
-        alert("Ocorreu um erro ao salvar o ingrediente")
+        toast({
+          message: 'Ocorreu um erro ao salvar o ingrediente',
+          duration: 2000,
+          type: 'is-danger'
+        })
       }
     })
   }

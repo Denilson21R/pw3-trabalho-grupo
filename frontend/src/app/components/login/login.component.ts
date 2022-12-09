@@ -4,6 +4,7 @@ import {Usuario} from "../../model/Usuario";
 import {WebService} from "../../../web.service";
 import {HttpResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {toast} from "bulma-toast";
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,6 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
   formLogin!: FormGroup;
-  //usuario!: Usuario;
 
   constructor(
     private web: WebService,
@@ -33,11 +33,19 @@ export class LoginComponent implements OnInit {
           this.setSessionUserData(response);
           this.router.navigate(['home'])
         }else{
-          alert("Erro nos dados do login")
+          toast({
+            message: 'Ocorreu um erro ao realizar o login',
+            duration: 2000,
+            type: 'is-danger'
+          })
         }
       })
     }else{
-      alert("Erro no login")
+      toast({
+        message: 'Campos obrigatórios não foram preenchidos',
+        duration: 2000,
+        type: 'is-danger'
+      })
     }
   }
 

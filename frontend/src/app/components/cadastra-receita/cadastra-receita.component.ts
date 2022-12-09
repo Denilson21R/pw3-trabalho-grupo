@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Ingrediente } from 'src/app/model/Ingrediente';
 import { Receita } from 'src/app/model/Receita';
 import { WebService } from 'src/web.service';
+import {toast} from "bulma-toast";
 
 @Component({
   selector: 'app-cadastra-receita',
@@ -46,7 +47,11 @@ export class CadastraReceitaComponent implements OnInit {
     if(this.formReceita.valid && this.ingredientesReceita.length > 0){
       this.addReceita();
     } else {
-      alert("Receita inválida.");
+      toast({
+        message: 'Campos obrigatórios não foram preenchidos',
+        duration: 2000,
+        type: 'is-danger'
+      })
     }
   }
 
@@ -59,10 +64,18 @@ export class CadastraReceitaComponent implements OnInit {
       this.converteArrayId(this.ingredientesReceita)
     ).subscribe((response) => {
       if (response.ok) {
-        alert("Receita salva com sucesso");
+        toast({
+          message: 'Receita salva com sucesso',
+          duration: 2000,
+          type: 'is-success'
+        })
         this.router.navigate(["/home"]);
       } else {
-        alert("Ocorreu um erro ao salvar a receita");
+        toast({
+          message: 'Ocorreu um erro ao salvar a receita',
+          duration: 2000,
+          type: 'is-danger'
+        })
       }
     })
   }
@@ -73,7 +86,11 @@ export class CadastraReceitaComponent implements OnInit {
       if (response.ok) {
         this.ingredientes = response.body!;
       } else {
-        alert("Ocorreu um erro ao obter os ingredientes");
+        toast({
+          message: 'Ocorreu um erro ao obter os ingredientes',
+          duration: 2000,
+          type: 'is-danger'
+        })
       }
     })
   }

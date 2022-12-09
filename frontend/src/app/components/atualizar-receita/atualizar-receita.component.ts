@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {WebService} from "../../../web.service";
 import {Receita} from "../../model/Receita";
 import {Ingrediente} from "../../model/Ingrediente";
+import {toast} from "bulma-toast";
 
 @Component({
   selector: 'app-atualizar-receita',
@@ -45,26 +46,46 @@ export class AtualizarReceitaComponent implements OnInit {
       if (response.ok) {
         this.ingredientes = response.body!;
       } else {
-        alert("Ocorreu um erro ao obter os ingredientes");
+        toast({
+          message: 'Ocorreu um erro ao obter os ingredientes',
+          duration: 2000,
+          type: 'is-danger'
+        })
       }
     })
   }
 
   salvarReceita() {
-    this.web.atualizarReceita(
-      this.receita.id,
-      this.formReceita.controls["nome"].value,
-      this.formReceita.controls["modo_preparo"].value,
-      this.formReceita.controls["minutos_preparo"].value,
-      this.formReceita.controls["estacao_ano"].value,
-    ).subscribe((response)=>{
-      if(response.ok){
-        alert("Receita atualizada com sucesso");
-        this.router.navigate(["/home"]);
-      }else{
-        alert("Ocorreu um erro ao atualizar a receita!")
-      }
-    })
+    if(this.formReceita.valid){
+      this.web.atualizarReceita(
+        this.receita.id,
+        this.formReceita.controls["nome"].value,
+        this.formReceita.controls["modo_preparo"].value,
+        this.formReceita.controls["minutos_preparo"].value,
+        this.formReceita.controls["estacao_ano"].value,
+      ).subscribe((response)=>{
+        if(response.ok){
+          toast({
+            message: 'Receita salva com sucesso',
+            duration: 2000,
+            type: 'is-success'
+          })
+          this.router.navigate(["/home"]);
+        }else{
+          toast({
+            message: 'Ocorreu um erro ao atualizar a receita',
+            duration: 2000,
+            type: 'is-danger'
+          })
+        }
+      })
+    }else{
+      toast({
+        message: 'Campos obrigatórios não foram preenchidos',
+        duration: 2000,
+        type: 'is-danger'
+      })
+    }
   }
 
   private fillReceita(id: string) {

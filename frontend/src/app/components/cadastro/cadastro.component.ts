@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {WebService} from "../../../web.service";
 import {Router} from "@angular/router";
+import {toast} from "bulma-toast";
 
 @Component({
   selector: 'app-cadastro',
@@ -25,14 +26,26 @@ export class CadastroComponent implements OnInit {
         this.formCadastro.controls["senha"].value
       ).subscribe((response)=>{
         if(response.ok){
-          alert("salvo com sucesso!")
+          toast({
+            message: 'Cadastrado com sucesso!',
+            duration: 2000,
+            type: 'is-success'
+          })
           this.router.navigate(["login"])
         }else{
-          alert("erro")
+          toast({
+            message: 'Ocorreu um erro ao cadastrar',
+            duration: 2000,
+            type: 'is-danger'
+          })
         }
       })
     }else{
-      alert("faltam dados")
+      toast({
+        message: 'Campos obrigatórios não preenchidos',
+        duration: 2000,
+        type: 'is-danger'
+      })
     }
   }
 

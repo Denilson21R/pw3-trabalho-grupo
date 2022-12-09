@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Ingrediente} from "../../model/Ingrediente";
 import {WebService} from "../../../web.service";
+import {toast} from "bulma-toast";
 
 @Component({
   selector: 'app-ingredientes',
@@ -21,7 +22,11 @@ export class IngredientesComponent implements OnInit {
       if (response.ok) {
         this.ingredientes = response.body!
       } else {
-        alert("Ocorreu um erro ao obter os ingredientes");
+        toast({
+          message: 'Ocorreu um erro ao obter os ingredientes',
+          duration: 2000,
+          type: 'is-danger'
+        })
       }
     })
   }
